@@ -1,38 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schulwebseite</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Navigation mit dynamischem Inhalt</title>
+    <!-- Verweis auf externe CSS-Datei -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Willkommen auf der Schulwebseite</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">Über uns</a></li>
-            <li><a href="#contact">Kontakt</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section id="home">
-            <h2>Startseite</h2>
-            <p>Willkommen auf unserer Schulwebseite. Hier finden Sie alle Informationen über unsere Schule.</p>
-        </section>
-        <section id="about">
-            <h2>Über uns</h2>
-            <p>Unsere Schule bietet eine Vielzahl von Programmen und Aktivitäten für Schüler aller Altersgruppen.</p>
-        </section>
-        <section id="contact">
-            <h2>Kontakt</h2>
-            <p>Sie können uns per E-Mail unter info@schule.de erreichen.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Schulwebseite. Alle Rechte vorbehalten.</p>
-    </footer>
+
+    <div class="nav">
+        <a onclick="showContent('home')">Home</a>
+        <span>|</span>
+        <a onclick="showContent('faecher')">Fächer</a>
+        <span>|</span>
+        <a onclick="showContent('uebungen')">Übungen</a>
+    </div>
+
+    <div class="content" id="content">
+        <h2 class="center-title">Willkommen auf unserer Schüler-Website!</h2>
+        <p class="intro-text">
+            Diese Website wurde von Schülern für Schüler erstellt, um beim Lernen fürs Abitur und für Klassenarbeiten zu helfen. 
+            Sie bietet nicht nur eine Sammlung von Übungen und Erklärungen, sondern auch einen Überblick über die Fächer und Themen, 
+            die an unserer Schule unterrichtet werden. Besonders für Schüler der 10. Klasse kann sie hilfreich sein, um einen 
+            Einblick in die Oberstufe zu bekommen. Viel Erfolg beim Lernen!
+        </p>
+    </div>
+
+    <script>
+        function showContent(page) {
+            const contentDiv = document.getElementById("content");
+            
+            if (page === "home") {
+                contentDiv.innerHTML = `
+                    <h2 class="center-title">Willkommen auf unserer Schüler-Website!</h2>
+                    <p class="intro-text">
+                        Diese Website wurde von Schülern für Schüler erstellt, um beim Lernen fürs Abitur und für Klassenarbeiten zu helfen. 
+                        Sie bietet nicht nur eine Sammlung von Übungen und Erklärungen, sondern auch einen Überblick über die Fächer und Themen, 
+                        die an unserer Schule unterrichtet werden. Besonders für Schüler der 10. Klasse kann sie hilfreich sein, um einen 
+                        Einblick in die Oberstufe zu bekommen. Viel Erfolg beim Lernen!
+                    </p>
+                `;
+            } 
+            else if (page === "faecher") {
+                contentDiv.innerHTML = `
+                    <h2 class="center-title">Fächer</h2>
+                    <div class="faecher-grid">
+                        <div class="fach-box" onclick="showFach('Mathematik')">
+                            <div class="fach-header math">Mathematik</div>
+                            <div class="fach-content">Mathe-Übungen und Theorie</div>
+                        </div>
+                        <div class="fach-box" onclick="showFach('Deutsch')">
+                            <div class="fach-header german">Deutsch</div>
+                            <div class="fach-content">Grammatik, Texte und mehr</div>
+                        </div>
+                        <div class="fach-box" onclick="showFach('Englisch')">
+                            <div class="fach-header english">Englisch</div>
+                            <div class="fach-content">Vokabeln, Grammatik, Übungen</div>
+                        </div>
+                        <div class="fach-box" onclick="showFach('Biologie')">
+                            <div class="fach-header biology">Biologie</div>
+                            <div class="fach-content">Lernen über Natur und Leben</div>
+                        </div>
+                        <div class="fach-box" onclick="showFach('Physik')">
+                            <div class="fach-header physics">Physik</div>
+                            <div class="fach-content">Gesetze der Natur und Experimente</div>
+                        </div>
+                        <div class="fach-box" onclick="showFach('Chemie')">
+                            <div class="fach-header chemistry">Chemie</div>
+                            <div class="fach-content">Elemente, Reaktionen, Formeln</div>
+                        </div>
+                    </div>
+                `;
+            } 
+            else if (page === "uebungen") {
+                contentDiv.innerHTML = "<h2 class='center-title'>Übungen</h2><p>Hier findest du verschiedene Übungen.</p>";
+            }
+        }
+
+        function showFach(fachName) {
+            document.getElementById("content").innerHTML = `<h2 class="center-title">${fachName}</h2><p>Hier findest du Inhalte zu ${fachName}.</p>`;
+        }
+    </script>
+
 </body>
 </html>
